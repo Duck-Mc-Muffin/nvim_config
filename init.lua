@@ -1,4 +1,4 @@
+vim.cmd('source ~/.config/nvim/.vimrc')
+
 require('sp')
 require('sp.lazy')
-
-vim.cmd('source .vimrc')

@@ -49,9 +49,9 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Clip Board
-nnoremap <leader>y '"+y'
-vnoremap <leader>y '"+y'
-nnoremap <leader>Y '"+Y'
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
 
 " Yee
 nnoremap J mzJ`z
