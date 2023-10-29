@@ -37,6 +37,7 @@ require('lazy').setup({
     },
     {'ThePrimeagen/harpoon'},
     {'mbbill/undotree'},
+    {'tikhomirov/vim-glsl'}, -- GLSL syntax highlighting
 
     -- LSP
     {'williamboman/mason.nvim'},

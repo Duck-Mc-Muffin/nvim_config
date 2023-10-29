@@ -1,8 +1,8 @@
 local lsp_zero = require('lsp-zero')
 
+-- Keybinds on "attach"
 lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
-
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -15,6 +15,7 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+-- Mason LSPs
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {'lua_ls', 'rust_analyzer'},
@@ -27,6 +28,11 @@ require('mason-lspconfig').setup({
   }
 })
 
+-- "Vanilla" LSPs
+-- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
+require('lspconfig').glsl_analyzer.setup({})
+
+-- Autocomplete
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
