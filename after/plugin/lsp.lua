@@ -29,8 +29,20 @@ require('mason-lspconfig').setup({
 })
 
 -- "Vanilla" LSPs
--- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
-require('lspconfig').glsl_analyzer.setup({})
+local lsp_config = require('lspconfig')
+lsp_config.glsl_analyzer.setup({}) -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
+
+-- Language specific LSP configs
+-- Rust
+vim.api.nvim_create_autocmd('BufWritePre', { -- TODO: use some LSP-Hook?
+	desc = 'Format Rust code on write using :RustFmt',
+	group = vim.api.nvim_create_augroup('rust_fmt_on_save', {}),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'rust' then
+			vim.cmd 'RustFmt'
+		end
+	end,
+})
 
 -- Autocomplete
 local cmp = require('cmp')
@@ -43,8 +55,9 @@ cmp.setup({
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-l>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),

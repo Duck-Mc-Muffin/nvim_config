@@ -1,8 +1,16 @@
+" Für Hilfe bei den Bezeichnungen für Tasten -> :help key-notation
+
 " Sonstiges
 let mapleader = ' '
 set nu rnu
 set cursorline
 set scrolloff=8
+
+" Netrw
+let g:netrw_liststyle=3
+
+" In einem anderen Projekt diese Datei im vertikalen Split öffnen
+:nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
 " vi Kompatibilität deaktivieren, um Probleme zu minimieren
 set nocompatible
