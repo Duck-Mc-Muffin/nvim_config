@@ -6,11 +6,21 @@ set nu rnu
 set cursorline
 set scrolloff=8
 
+" Pfeiltasten deaktivieren (zum Lernen)
+nnoremap <Up> <nop>
+vnoremap <Up> <nop>
+nnoremap <Right> <nop>
+vnoremap <Right> <nop>
+nnoremap <Down> <nop>
+vnoremap <Down> <nop>
+nnoremap <Left> <nop>
+vnoremap <Left> <nop>
+
 " Netrw
 let g:netrw_liststyle=3
 
 " In einem anderen Projekt diese Datei im vertikalen Split öffnen
-:nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
+nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
 " vi Kompatibilität deaktivieren, um Probleme zu minimieren
 set nocompatible
@@ -48,6 +58,7 @@ vnoremap <c-j> <c-d>zz
 
 " Einfacher aus insert mode raus wechseln
 inoremap jj <Esc>
+inoremap <Esc> <nop>
 
 " File Explorer
 nnoremap <leader>q :Ex<Enter>
