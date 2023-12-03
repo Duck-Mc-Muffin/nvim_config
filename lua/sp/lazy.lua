@@ -33,7 +33,8 @@ require('lazy').setup({
     {
         'rebelot/kanagawa.nvim',
         config = function()
-            vim.cmd("colorscheme kanagawa")
+            -- Themes: wave, dragon, lotus
+                vim.cmd("colorscheme kanagawa-lotus")
         end,
     },
     {'ThePrimeagen/harpoon'},

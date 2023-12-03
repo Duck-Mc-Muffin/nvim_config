@@ -1,4 +1,4 @@
--- remaps
+-- remaps (in lua)
 require('sp.remap')
 
 -- hightlighted yank

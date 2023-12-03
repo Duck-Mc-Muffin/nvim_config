@@ -32,17 +32,6 @@ require('mason-lspconfig').setup({
 -- "Vanilla" LSPs
 lsp_config.glsl_analyzer.setup({}) -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
 
--- Auto command Beispiel (rust)
---vim.api.nvim_create_autocmd('BufWritePre', { -- TODO: use some LSP-Hook?
---	desc = 'Format Rust code on write using :RustFmt',
---	group = vim.api.nvim_create_augroup('rust_fmt_on_save', {}),
---	callback = function (opts)
---		if vim.bo[opts.buf].filetype == 'rust' then
---			vim.cmd 'RustFmt'
---		end
---	end,
---})
-
 -- Auto format
 lsp_zero.format_on_save({
   format_opts = {
@@ -52,6 +41,20 @@ lsp_zero.format_on_save({
   servers = {
     ['rust_analyzer'] = {'rust'},
   }
+})
+
+-- Auto format after leaving INSERT for specific files
+vim.api.nvim_create_autocmd('InsertLeave', { -- TODO: use some LSP-Hook?
+	desc = 'Saves the file after leaving INSERT.',
+	group = vim.api.nvim_create_augroup('save_file_after_insert', {}),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'rust' then
+            local tmp = vim.g.rustfmt_fail_silently
+            vim.g.rustfmt_fail_silently = 1
+			vim.cmd('RustFmt')
+            vim.g.rustfmt_fail_silently = tmp
+		end
+	end,
 })
 
 -- Auto complete
