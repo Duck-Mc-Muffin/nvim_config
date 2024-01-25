@@ -1,8 +1,5 @@
 " Für Hilfe bei den Bezeichnungen für Tasten -> :help key-notation
 
-" In einem anderen Projekt diese Datei im vertikalen Split öffnen
-nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
-
 " Sonstiges
 let mapleader = ' '
 set nu rnu
@@ -12,23 +9,8 @@ set showcmd
 set showmode
 set termguicolors
 
-" Z und Y (vorrübergehend)
-inoremap y z
-inoremap z y
-inoremap Y Z
-inoremap Z Y
-nnoremap z y
-nnoremap zz yy
-
-" Pfeiltasten deaktivieren (zum Lernen)
-nnoremap <Up> <nop>
-vnoremap <Up> <nop>
-nnoremap <Right> <nop>
-vnoremap <Right> <nop>
-nnoremap <Down> <nop>
-vnoremap <Down> <nop>
-nnoremap <Left> <nop>
-vnoremap <Left> <nop>
+" In einem anderen Projekt diese Datei im vertikalen Split öffnen
+nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
 " Netrw File Explorer
 let g:netrw_liststyle=3
@@ -60,10 +42,14 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " Halbe Seiten hoch und runter springen
-nnoremap <c-k> <c-u>zz
-nnoremap <c-j> <c-d>zz
-vnoremap <c-k> <c-u>zz
-vnoremap <c-j> <c-d>zz
+nnoremap <a-k> <c-u>zz
+nnoremap <a-j> <c-d>zz
+vnoremap <a-k> <c-u>zz
+vnoremap <a-j> <c-d>zz
+
+" X Zeilen hoch und runternnoremap <a-j> 10j springen
+nnoremap <c-j> 10j
+nnoremap <c-k> 10k
 
 " Einfacher aus insert mode raus wechseln
 inoremap jj <Esc>
