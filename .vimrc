@@ -12,6 +12,10 @@ set termguicolors
 " In einem anderen Projekt diese Datei im vertikalen Split öffnen
 nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
+" TODO: Splits bewegen
+"nnoremap <a-8> <c-w><
+"nnoremap <a-9> <c-w>>
+
 " Netrw File Explorer
 let g:netrw_liststyle=3
 nnoremap <leader>q :Ex<cr>
@@ -42,18 +46,17 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " Halbe Seiten hoch und runter springen
-nnoremap <a-k> <c-u>zz
-nnoremap <a-j> <c-d>zz
-vnoremap <a-k> <c-u>zz
-vnoremap <a-j> <c-d>zz
+nnoremap <c-k> <c-u>zz
+nnoremap <c-j> <c-d>zz
+vnoremap <c-k> <c-u>zz
+vnoremap <c-j> <c-d>zz
 
-" X Zeilen hoch und runternnoremap <a-j> 10j springen
-nnoremap <c-j> 10j
-nnoremap <c-k> 10k
+" X Zeilen hoch und runter springen
+nnoremap <a-j> 10j
+nnoremap <a-k> 10k
 
 " Einfacher aus insert mode raus wechseln
 inoremap jj <Esc>
-inoremap <Esc> <nop>
 
 " IDE type save mit Strg+s
 nnoremap <c-s> :w<cr>
@@ -76,6 +79,9 @@ nnoremap L :s/ /\r<cr>
 nnoremap <leader>p "_dwP
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" Ez { ... }
+nnoremap <leader>[ o{<CR>}<Up><Right><CR>
 
 " TODO
 " Zeilen auskommentieren
