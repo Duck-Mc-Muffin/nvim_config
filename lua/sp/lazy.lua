@@ -12,15 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    --{
-        --"folke/which-key.nvim",
-        --event = "VeryLazy",
-        --init = function()
-            --vim.o.timeout = true
-            --vim.o.timeoutlen = 300
-        --end,
-        --opts = {},
-    --},
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.4',
@@ -34,7 +25,7 @@ require('lazy').setup({
         'rebelot/kanagawa.nvim',
         config = function()
             -- Themes: wave, dragon, lotus
-                vim.cmd("colorscheme kanagawa-lotus")
+            vim.cmd("colorscheme kanagawa-lotus")
         end,
     },
     {'ThePrimeagen/harpoon'},
