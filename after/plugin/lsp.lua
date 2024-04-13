@@ -20,7 +20,7 @@ end)
 -- Mason LSPs
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'lua_ls', 'rust_analyzer'},
+  ensure_installed = {'lua_ls'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -31,9 +31,9 @@ require('mason-lspconfig').setup({
 })
 
 -- "Vanilla" LSPs
-lsp_config.glsl_analyzer.setup({}) -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
+--lsp_config.glsl_analyzer.setup({}) -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
 
--- Auto format
+-- Auto format on save
 lsp_zero.format_on_save({
   format_opts = {
     async = false,
@@ -47,7 +47,7 @@ lsp_zero.format_on_save({
 -- Auto format after leaving INSERT for specific files
 vim.api.nvim_create_autocmd('InsertLeave', { -- TODO: use some LSP-Hook?
 	desc = 'Saves the file after leaving INSERT.',
-	group = vim.api.nvim_create_augroup('save_file_after_insert', {}),
+	group = vim.api.nvim_create_augroup('format_file_after_insert', {}),
 	callback = function (opts)
 		if vim.bo[opts.buf].filetype == 'rust' then
             local tmp = vim.g.rustfmt_fail_silently
