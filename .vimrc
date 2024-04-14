@@ -80,6 +80,15 @@ nnoremap <leader>p "_dwP
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+" Quickfix list
+nnoremap <F4> :cn<cr>
+nnoremap <F3> :cp<cr>
+augroup qf_mappings
+    autocmd!
+    " Mit f die Stelle zeigen ohne in das Fenster zu wechseln
+    autocmd FileType qf nnoremap <buffer> f <CR><Esc><C-w>w
+augroup END
+
 " Ez { ... }
 nnoremap <leader>[ o{<CR>}<Up><Right><CR>
 
