@@ -30,6 +30,15 @@ require('lazy').setup({
     },
     {'ThePrimeagen/harpoon'},
     {'mbbill/undotree'},
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = true
+    },
     --{'tikhomirov/vim-glsl'}, -- GLSL syntax highlighting
 
     -- LSP
