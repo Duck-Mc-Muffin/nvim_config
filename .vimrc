@@ -81,8 +81,8 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " Quickfix list
-nnoremap <F4> :cn<cr>
-nnoremap <F3> :cp<cr>
+nnoremap <F4> :cn<cr>zz
+nnoremap <F3> :cp<cr>zz
 augroup qf_mappings
     autocmd!
     " Mit f die Stelle zeigen ohne in das Fenster zu wechseln
