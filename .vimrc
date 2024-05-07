@@ -18,7 +18,7 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
 " Netrw File Explorer
 let g:netrw_liststyle=3
-nnoremap <leader>q :Ex<cr>
+"nnoremap <leader>q :Ex<cr>
 
 " vi Kompatibilität deaktivieren, um Probleme zu minimieren
 set nocompatible

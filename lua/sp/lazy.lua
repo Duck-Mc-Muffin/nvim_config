@@ -16,6 +16,20 @@ require('lazy').setup({
         'nvim-telescope/telescope.nvim',
         tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {
+            defaults = {
+                vimgrep_arguments = {
+                    'rg',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case',
+                    '--hidden' -- also search hidden files
+                },
+            },
+        },
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -37,7 +51,12 @@ require('lazy').setup({
             "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
         },
-        config = true
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        'echasnovski/mini.files',
+        version = '*'
     },
     --{'tikhomirov/vim-glsl'}, -- GLSL syntax highlighting
 
