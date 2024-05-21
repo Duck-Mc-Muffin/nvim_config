@@ -2,7 +2,7 @@ local mini_files = require('mini.files')
 
 mini_files.setup({
     mappings = {
-        go_in_plus = ';'
+        go_in_plus = '<cr>'
     }
 })
 

@@ -1,5 +1,5 @@
--- remaps (in lua)
 require('sp.remap')
+require('sp.lazy')
 
 -- hightlighted yank
 vim.api.nvim_create_autocmd('TextYankPost', {
