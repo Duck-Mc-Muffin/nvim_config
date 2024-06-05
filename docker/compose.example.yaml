@@ -1,0 +1,13 @@
+services:
+  server-web:
+    image: some-image.dev.nvim                  # dev-image
+    build:
+      context: ./..
+      dockerfile: ./docker/Dockerfile.dev.nvim  # dev-image
+    ports:
+      - 80:80
+      - 443:443
+    volumes:                                    # persist nvim undotree
+      - type: bind
+        source: ./../tmp/undodir
+        target: "/root/.vim/undodir"

@@ -1,0 +1,24 @@
+# Inspired by: https://github.com/fxdgear/alpine-neovim/blob/master/Dockerfile
+FROM <some-image>:latest
+
+# =============================== NEOVIM ===============================
+RUN apk add --update \
+    git \
+    clang \
+    unzip \
+    wget \
+    curl \
+    gzip \
+    tar \
+    bash \
+    ripgrep \
+    fd
+
+RUN apk add --update neovim neovim-doc \
+    && mkdir /root/.config
+
+RUN git clone https://github.com/Duck-Mc-Muffin/nvim_config.git /root/.config/nvim \
+    && nvim --headless -c "MasonInstall <some-lsp>" -c "q"
+# ======================================================================
+
+CMD ["sleep", "infinity"]
