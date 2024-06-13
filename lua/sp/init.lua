@@ -16,3 +16,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
     end,
 })
+
+-- live preview for substitutions (and others) in a split window
+vim.opt.inccommand = "split"
