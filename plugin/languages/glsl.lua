@@ -1,0 +1,4 @@
+-- local lsp_config = require('lspconfig')
+--
+-- -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
+-- lsp_config.glsl_analyzer.setup({})

@@ -1,11 +1,5 @@
-require('sp.remap')
-require('sp.lazy')
-require('sp.bool').setup({
-    mappings = {
-        increment = '<C-a>',
-        decrement = '<C-x>'
-    },
-})
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
 
 -- hightlighted yank
 vim.api.nvim_create_autocmd('TextYankPost', {
