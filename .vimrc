@@ -51,12 +51,6 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-" Halbe Seiten hoch und runter springen
-nnoremap <c-k> <c-u>zz
-nnoremap <c-j> <c-d>zz
-vnoremap <c-k> <c-u>zz
-vnoremap <c-j> <c-d>zz
-
 " X Zeilen hoch und runter springen
 nnoremap <a-j> 10j
 nnoremap <a-k> 10k

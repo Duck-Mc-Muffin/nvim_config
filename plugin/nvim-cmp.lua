@@ -10,13 +10,19 @@ cmp.setup({
         {name = 'buffer'},
         {name = 'nvim_lsp_signature_help'},
     },
-    formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
         ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-l>'] = cmp.mapping.confirm({ select = true }),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<Enter>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
+    formatting = lsp_zero.cmp_format(),
+
+    -- LuaSnip-Integration
+    snippet = {
+        expand = function (args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
 })

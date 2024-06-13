@@ -19,6 +19,7 @@ sudo apt-get install neovim
 cd ~/.config
 git clone https://github.com/Duck-Mc-Muffin/nvim_config.git nvim
 ```
+Terminal einmal neu starten!
 
 ### Dependencies
 `:checkhealth` listet u.a. fehlende und optionale dependencies auf.
@@ -41,6 +42,7 @@ winget install Neovim.Neovim
 cd %userprofile%\AppData\Local\nvim
 git clone https://github.com/Duck-Mc-Muffin/nvim_config.git .
 ```
+Pfad `C:\Program Files\nvim\bin` zu PATH adden und Shell neustarten!
 
 ### Dependencies
 ```shell
@@ -48,7 +50,6 @@ winget install BurntSushi.ripgrep.MSVC
 winget install hurl
 winget install jqlang.jq
 ```
-Pfad `C:\Program Files\nvim\bin` zu PATH adden und Shell neustarten!
 
 ### C#
 Language Server für C# Projekte:
