@@ -66,17 +66,19 @@ inoremap <c-s> <esc>:w<cr>i
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Clip Board
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
-
 " Yee
 nnoremap J mzJ`z
 nnoremap L :s/ /\r<cr>
 
+" Clip Board
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+
 " Void Register
-nnoremap <leader>p "_dwP
+nnoremap <leader>s "_diwP
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
