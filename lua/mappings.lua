@@ -47,7 +47,7 @@ local function open_file_in_tab(name, search_path)
             }
         )[1]
     if file ~= nil then
-        vim.cmd.tabnew(file)
+        vim.cmd('tab drop ' .. file)
         return
     end
 
@@ -60,12 +60,12 @@ local function open_file_in_tab(name, search_path)
             }
         )[1]
     if file ~= nil then
-        vim.cmd.tabnew(file)
+        vim.cmd('tab drop ' .. file)
         return
     end
 
     -- Create a new file for this FileType
-    vim.cmd.tabnew(vim.fs.joinpath(search_path, name) .. '.lua')
+    vim.cmd('tab drop ' .. vim.fs.joinpath(search_path, name) .. '.lua')
 end
 
 vim.keymap.set('n', '<leader>t', function()
