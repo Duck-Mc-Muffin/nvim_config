@@ -1,22 +1,30 @@
-local lsnip = require('luasnip')
+local ls = require('luasnip')
 
-lsnip.config.set_config({
+ls.config.set_config({
     -- history      = false,
     updateevents = 'TextChanged,TextChangedI',
+    enable_autosnippets = true,
+    store_selection_keys = "<Tab>",
 })
 
-for _, snippet_file in ipairs(vim.api.nvim_get_runtime_file('lua/snippets/*.lua', true)) do
-    loadfile(snippet_file)()
-end
+-- Load file type snippets
+require('luasnip.loaders.from_lua').lazy_load({
+    paths = vim.fs.joinpath(vim.fn.stdpath('config'), 'luasnip')
+})
+
+-- "manual" loading example
+-- for _, snippet_file in ipairs(vim.api.nvim_get_runtime_file('lua/snippets/*.lua', true)) do
+--     loadfile(snippet_file)()
+-- end
 
 vim.keymap.set({'i', 's'}, '<C-l>', function()
-    if lsnip.expand_or_jumpable() then
-        lsnip.expand_or_jump()
+    if ls.expand_or_jumpable() then
+        ls.expand_or_jump()
     end
 end, { silent = true })
 
 vim.keymap.set({'i', 's'}, '<C-h>', function()
-    if lsnip.jumpable(-1) then
-        lsnip.jump(-1)
+    if ls.jumpable(-1) then
+        ls.jump(-1)
     end
 end, { silent = true })
