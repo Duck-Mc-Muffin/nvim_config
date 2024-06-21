@@ -2,6 +2,7 @@
 FROM <some-image>:latest
 
 # =============================== NEOVIM ===============================
+# Neovim dependencies, missing in alpine linux
 RUN apk add --update \
     git \
     clang \
@@ -14,11 +15,26 @@ RUN apk add --update \
     ripgrep \
     fd
 
-RUN apk add --update neovim neovim-doc \
-    && mkdir /root/.config
+# Install Neovim via package manager (old version)
+# RUN apk add --update neovim neovim-doc
 
-RUN git clone https://github.com/Duck-Mc-Muffin/nvim_config.git /root/.config/nvim \
-    && nvim --headless -c "MasonInstall <some-lsp>" -c "q"
+# Install neovim from source
+RUN apk add --update \
+    build-base \
+    cmake \
+    coreutils \
+    gettext-tiny-dev
+
+RUN git clone --depth 1 --single-branch --branch nightly https://github.com/neovim/neovim /tmp/neovim_source \
+    && cd /tmp/neovim_source \
+    && make CMAKE_BUILD_TYPE=Release \
+    && make install \
+    && cd -
+
+# Configure Neovim from Github-repo and intall LSPs
+RUN mkdir /root/.config \
+    && git clone https://github.com/Duck-Mc-Muffin/nvim_config.git /root/.config/nvim \
+    && nvim --headless -c "MasonInstall <some-LSPs>" -c "q"
 # ======================================================================
 
 CMD ["sleep", "infinity"]
