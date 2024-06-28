@@ -27,7 +27,7 @@ RUN --mount=type=cache,target=/var/cache/apk \
     && mkdir /tmp/neovim
 
 # Compile Neovim
-# FIXME: The condition "\command -v nvim" does not prevent recompilation as intended
+# FIXME: The condition "command -v nvim" does not prevent recompilation as intended
 RUN --mount=type=cache,target=/tmp/neovim \
     [ -d /tmp/neovim/source ] \
     || git clone --depth 1 --single-branch --branch nightly https://github.com/neovim/neovim /tmp/neovim/source \
