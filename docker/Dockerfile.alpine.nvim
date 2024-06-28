@@ -3,38 +3,47 @@ FROM <some-image>:latest
 
 # =============================== NEOVIM ===============================
 # Neovim dependencies, missing in alpine linux
-RUN apk add --update \
-    git \
-    clang \
-    unzip \
-    wget \
-    curl \
-    gzip \
-    tar \
-    bash \
-    ripgrep \
-    fd
+RUN --mount=type=cache,target=/var/cache/apk \
+    apk add --update \
+        git \
+        clang \
+        unzip \
+        wget \
+        curl \
+        gzip \
+        tar \
+        bash \
+        ripgrep \
+        npm \
+        fd
 
-# Install Neovim via package manager (old version)
-# RUN apk add --update neovim neovim-doc
+# Prepare to install neovim from source
+RUN --mount=type=cache,target=/var/cache/apk \
+    apk add --update \
+        build-base \
+        cmake \
+        coreutils \
+        gettext-tiny-dev \
+    && mkdir /tmp/neovim
 
-# Install neovim from source
-RUN apk add --update \
-    build-base \
-    cmake \
-    coreutils \
-    gettext-tiny-dev
-
-RUN git clone --depth 1 --single-branch --branch nightly https://github.com/neovim/neovim /tmp/neovim_source \
-    && cd /tmp/neovim_source \
+# Compile Neovim
+# FIXME: The condition "\command -v nvim" does not prevent recompilation as intended
+RUN --mount=type=cache,target=/tmp/neovim \
+    [ -d /tmp/neovim/source ] \
+    || git clone --depth 1 --single-branch --branch nightly https://github.com/neovim/neovim /tmp/neovim/source \
+    && command -v nvim &> /dev/null \
+    || (cd /tmp/neovim/source \
     && make CMAKE_BUILD_TYPE=Release \
     && make install \
-    && cd -
+    && cd -)
 
 # Configure Neovim from Github-repo and intall LSPs
 RUN mkdir /root/.config \
     && git clone https://github.com/Duck-Mc-Muffin/nvim_config.git /root/.config/nvim \
     && nvim --headless -c "MasonInstall <some-LSPs>" -c "q"
-# ======================================================================
+
+# Helper for quality of live bash scripts
+LABEL neovim=1
 
 CMD ["sleep", "infinity"]
+# ======================================================================

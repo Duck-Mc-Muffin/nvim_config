@@ -7,7 +7,11 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:                                    # persist nvim undotree
-      - type: bind
-        source: ./../tmp/undodir
-        target: "/root/.vim/undodir"
+    volumes:
+        # Nvim DATA and STATE directories (SHADA-Files, harpoon.json, etc.)
+      - type: bind 
+        source: ./../.steven/nvim/XDG_STATE_HOME
+        target: /root/.local/state/nvim
+      - type: bind 
+        source: ./../.steven/nvim/XDG_DATA_HOME
+        target: /root/.local/share/nvim

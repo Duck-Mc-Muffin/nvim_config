@@ -4,7 +4,13 @@ ls.config.set_config({
     -- history      = false,
     updateevents = 'TextChanged,TextChangedI',
     enable_autosnippets = true,
+
+    -- TODO
+    -- Use Tab (or some other key if you prefer) to trigger visual selection
     store_selection_keys = "<Tab>",
+
+    -- Custom globals for use in luasnip files
+    snip_env = require('luasnip-utils'),
 })
 
 -- Load file type snippets
