@@ -14,6 +14,7 @@ cmp.setup({
         ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<M-l>'] = cmp.mapping.confirm({ select = true }),
         -- ['<Enter>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),

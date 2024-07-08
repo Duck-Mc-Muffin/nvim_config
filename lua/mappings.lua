@@ -68,14 +68,18 @@ local function open_file_in_tab(name, search_path)
     vim.cmd('tab drop ' .. vim.fs.joinpath(search_path, name) .. '.lua')
 end
 
-vim.keymap.set('n', '<leader>t', function()
-    local ft = vim.bo.filetype
-    local search_path = vim.fs.joinpath(vim.fn.stdpath('config'), 'ftplugin')
+vim.keymap.set('n', '<leader>ft', function()
+    local conf_path   = vim.fn.stdpath('config')
+    local ft          = vim.bo.filetype
+    local search_path = vim.fs.joinpath(conf_path, 'ftplugin')
     open_file_in_tab(ft, search_path)
+    vim.cmd('tcd ' .. conf_path)
 end, {desc = 'Open associated file type script for this file'})
 
-vim.keymap.set('n', '<leader>n', function()
-    local ft = vim.bo.filetype
-    local search_path = vim.fs.joinpath(vim.fn.stdpath('config'), 'luasnip')
+vim.keymap.set('n', '<leader>sn', function()
+    local conf_path   = vim.fn.stdpath('config')
+    local ft          = vim.bo.filetype
+    local search_path = vim.fs.joinpath(conf_path, 'luasnip')
     open_file_in_tab(ft, search_path)
+    vim.cmd('tcd ' .. conf_path)
 end, {desc = 'Open associated snippit script for this file type'})
