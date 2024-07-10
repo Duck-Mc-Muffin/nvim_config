@@ -18,6 +18,9 @@ require('luasnip.loaders.from_lua').lazy_load({
     paths = vim.fs.joinpath(vim.fn.stdpath('config'), 'luasnip')
 })
 
+-- VsCode like snippets collection
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- "manual" loading example
 -- for _, snippet_file in ipairs(vim.api.nvim_get_runtime_file('lua/snippets/*.lua', true)) do
 --     loadfile(snippet_file)()

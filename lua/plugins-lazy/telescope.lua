@@ -4,6 +4,9 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
         defaults = {
+            mappings = {
+                n = { ['q'] = require('telescope.actions').close },
+            },
             vimgrep_arguments = {
                 'rg',
                 '--color=never',
@@ -12,7 +15,6 @@ return {
                 '--line-number',
                 '--column',
                 '--smart-case',
-                '--hidden' -- also search hidden files
             },
         },
     },

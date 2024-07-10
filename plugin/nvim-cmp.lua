@@ -9,6 +9,7 @@ cmp.setup({
         {name = 'nvim_lua'},
         {name = 'buffer'},
         {name = 'nvim_lsp_signature_help'},
+        {name = 'luasnip'},
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
