@@ -56,6 +56,10 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 nnoremap <a-j> 10j
 nnoremap <a-k> 10k
 
+" Sprünge über 10 in zur jump map hinzufügen
+nnoremap <expr> k (v:count > 10 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 10 ? "m'" . v:count : '') . 'j'
+
 " Einfacher aus insert mode raus wechseln
 inoremap jj <Esc>
 
@@ -82,6 +86,9 @@ nnoremap <leader>P "+P
 nnoremap <leader>s "_diwP
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" Leerzeile unterhalb einfügen
+nnoremap <leader><leader> o<esc><up>
 
 " Quickfix list
 nnoremap <F4> :cn<cr>zz
