@@ -1,5 +1,10 @@
 local lsp_zero = require('lsp-zero')
 
+-- TODO: is this needed?
+lsp_zero.extend_lspconfig({
+    capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
+
 lsp_zero.on_attach(function(_, bufnr)
     -- Keymaps
     local opts = {buffer = bufnr, remap = false}
@@ -28,4 +33,6 @@ lsp_zero.on_attach(function(_, bufnr)
             vim.lsp.buf.clear_references()
         end,
     })
+
 end)
+

@@ -5,7 +5,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {desc = "Telescope find in bu
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {desc = "Telescope find help tags"})
 vim.keymap.set('n', '<leader>fm', builtin.marks, {desc = "Telescope find marks"})
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {desc = "Telescope find diagnostics"})
-vim.keymap.set('n', '<leader>fs', builtin.git_status, {desc = "Telescope find changed files"})
+vim.keymap.set('n', '<leader>fs', builtin.git_status, {desc = "Telescope find git hunks"})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {desc = "Telescope find in git files"})
 
 vim.keymap.set('n', '<leader>fvg', function()

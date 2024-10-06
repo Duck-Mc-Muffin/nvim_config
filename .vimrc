@@ -7,8 +7,8 @@
 "autocmd BufNewFile,BufRead *.razor set filetype=html.cshtml.razor
 
 " Sonstiges
-let mapleader = ' '
-let maplocalleader = ' '
+let mapleader=' '
+let maplocalleader=' '
 set nu rnu
 set cursorline
 set scrolloff=8
