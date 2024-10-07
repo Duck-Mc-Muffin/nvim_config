@@ -34,7 +34,18 @@ vim.api.nvim_create_autocmd('VimEnter', {
     group = vim.api.nvim_create_augroup('load_custom_session', {}),
     desc = 'Load a automatically created session when nvim is starting',
     pattern = '*',
-    callback = M.load,
+    callback = function (_)
+        -- Remember the file argument, nvim was called with
+        local file_arg_1 = vim.fn.argv(0)
+
+        -- Was nvim called on a file (instead of a directory)?
+        if vim.fn.argc() > 0 and vim.fn.isdirectory(file_arg_1) == 0 then
+            -- Remove the "edit <file>" lines in the session file,
+            -- to prevent the wrong file from beeing opened
+            os.execute("sed -i '/^edit/d' " .. M.getSessionFile())
+        end
+        M.load()
+    end,
     nested = true,
 })
 
