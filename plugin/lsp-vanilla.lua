@@ -1,4 +1,7 @@
--- local lsp_config = require('lspconfig')
---
+local lspconfig = require('lspconfig')
+
 -- -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
--- lsp_config.glsl_analyzer.setup({})
+-- lspconfig.glsl_analyzer.setup({})
+
+-- This is not needed for godot if --> see 'after/ftplugin/gdscript.lua'
+lspconfig.gdscript.setup({})
