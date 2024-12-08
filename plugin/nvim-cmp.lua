@@ -1,5 +1,4 @@
-local lsp_zero = require('lsp-zero')
-local cmp      = require('cmp')
+local cmp = require('cmp')
 
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
@@ -19,7 +18,6 @@ cmp.setup({
         -- ['<Enter>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
-    formatting = lsp_zero.cmp_format(),
 
     -- LuaSnip-Integration
     snippet = {
