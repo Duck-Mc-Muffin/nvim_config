@@ -1,1 +1,2 @@
-require('plugins-custom.session').setup({})
+require('plugins-custom.session').setup()
+

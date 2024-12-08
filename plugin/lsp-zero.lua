@@ -5,7 +5,7 @@ lsp_zero.extend_lspconfig({
     capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
 
-lsp_zero.on_attach(function(_, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
     -- Keymaps
     local opts = {buffer = bufnr, remap = false}
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -17,22 +17,25 @@ lsp_zero.on_attach(function(_, bufnr)
     -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
     -- Highlight word under the cursor
-    vim.o.updatetime = 300
-    vim.api.nvim_create_autocmd('CursorHold', {
-        desc = 'Highlights the current variable under the cursor.',
-        group = vim.api.nvim_create_augroup('highlight_cursor_word', {}),
-        callback = function (_)
-            vim.lsp.buf.clear_references()
-            vim.lsp.buf.document_highlight()
-        end,
-    })
-    vim.api.nvim_create_autocmd('CursorMoved', {
-        desc = 'Highlights the current variable under the cursor.',
-        group = vim.api.nvim_create_augroup('unhighlight_cursor_word', {}),
-        callback = function (_)
-            vim.lsp.buf.clear_references()
-        end,
-    })
-
+    if client.supports_method('textDocument/documentHighlight') then
+        vim.o.updatetime = 300
+        vim.api.nvim_create_autocmd('CursorHold', {
+            desc = 'Highlights the current variable under the cursor.',
+            group = vim.api.nvim_create_augroup('highlight_cursor_word', {}),
+            buffer = bufnr,
+            callback = function (_)
+                vim.lsp.buf.clear_references()
+                vim.lsp.buf.document_highlight()
+            end,
+        })
+        vim.api.nvim_create_autocmd('CursorMoved', {
+            desc = 'Highlights the current variable under the cursor.',
+            group = vim.api.nvim_create_augroup('unhighlight_cursor_word', {}),
+            buffer = bufnr,
+            callback = function (_)
+                vim.lsp.buf.clear_references()
+            end,
+        })
+    end
 end)
 
