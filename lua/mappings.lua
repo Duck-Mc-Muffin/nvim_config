@@ -71,7 +71,7 @@ end
 vim.keymap.set('n', '<leader>ft', function()
     local conf_path   = vim.fn.stdpath('config')
     local ft          = vim.bo.filetype
-    local search_path = vim.fs.joinpath(conf_path, 'ftplugin')
+    local search_path = vim.fs.joinpath(conf_path, 'after/ftplugin')
     open_file_in_tab(ft, search_path)
     vim.cmd('tcd ' .. conf_path)
 end, {desc = 'Open associated file type script for this file'})
