@@ -63,10 +63,6 @@ nnoremap <expr> j (v:count > 10 ? "m'" . v:count : '') . 'j'
 " Einfacher aus insert mode raus wechseln
 inoremap jj <Esc>
 
-" IDE type save mit Strg+s
-nnoremap <c-s> :w<cr>
-inoremap <c-s> <esc>:w<cr>i
-
 " Code bewegen
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
