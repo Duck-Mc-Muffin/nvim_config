@@ -86,6 +86,9 @@ vnoremap <leader>d "_d
 " Leerzeile unterhalb einfügen
 nnoremap <leader><leader> o<esc><up>
 
+" Zeilen mit { ... } einrücken
+vnoremap <leader>{ >O{<Esc>'>o}<Esc>
+
 " Quickfix list
 nnoremap <F8> :cn<cr>zz
 nnoremap <F7> :cp<cr>zz
