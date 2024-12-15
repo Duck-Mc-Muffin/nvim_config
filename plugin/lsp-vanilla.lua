@@ -6,8 +6,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = {buffer = event.buf, remap = false}
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+        -- Custom Go-Definition: either jump to definition or jump from definition to the first item
+        vim.keymap.set("n", "gd", function ()
+            local current_file = event.file
+            local current_line = vim.api.nvim_win_get_cursor(0)[1]
+            vim.lsp.buf.references(nil, { on_list = function(options)
+                local item = options.items[1]
+                ---@diagnostic disable-next-line: param-type-mismatch
+                vim.fn.setqflist({}, ' ', options)
+                if current_file ~= item.filename or current_line ~= item.lnum then
+                    vim.cmd.cfirst()
+                else
+                    vim.cmd.cnext()
+                end
+            end })
+        end, opts)
+
         -- Keymaps
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "g=", vim.lsp.buf.format, opts)
         vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol, opts)
 
@@ -32,7 +47,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.api.nvim_create_autocmd('CursorHold', {
                 desc = 'Highlights the current variable under the cursor.',
                 group = vim.api.nvim_create_augroup('highlight_cursor_word', {}),
-                buffer = bufnr,
+                buffer = 0,
                 callback = function (_)
                     vim.lsp.buf.clear_references()
                     vim.lsp.buf.document_highlight()
@@ -41,7 +56,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.api.nvim_create_autocmd('CursorMoved', {
                 desc = 'Highlights the current variable under the cursor.',
                 group = vim.api.nvim_create_augroup('unhighlight_cursor_word', {}),
-                buffer = bufnr,
+                buffer = 0,
                 callback = function (_)
                     vim.lsp.buf.clear_references()
                 end,
