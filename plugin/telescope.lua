@@ -18,7 +18,10 @@ vim.keymap.set('n', '<leader>fs', function ()
 end, {desc = "Telescope find git hunks"})
 
 vim.keymap.set('n', '<leader>fd', function()
-    builtin.diagnostics({ initial_mode = "normal" })
+    builtin.diagnostics({
+        initial_mode = "normal",
+        layout_strategy = 'vertical',
+    })
 end, {desc = "Telescope find diagnostics"})
 
 vim.keymap.set('n', '<leader>fvg', function()

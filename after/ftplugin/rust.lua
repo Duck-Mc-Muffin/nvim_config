@@ -11,7 +11,11 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
     end
 })
 
+------------------------------------ Treesitter powered mappings
 local ts = vim.treesitter
+local opts = { buffer = true, remap = false }
+
+-- Paste current function parameters
 local function paste_current_parameter_names()
     -- Get parent node
     local fn_node = FindParentFromCursor(function(node)
@@ -35,7 +39,22 @@ local function paste_current_parameter_names()
     -- Paste into buffer at cursor position
     vim.api.nvim_paste(table.concat(param_names, ', '), false, -1)
 end
-
-local opts = { buffer = true, remap = false }
 vim.keymap.set("n", "<leader>(", paste_current_parameter_names, opts)
 
+-- Function text object
+local function select_current_function()
+    -- Get parent node
+    local fn_node = FindParentFromCursor(function(node)
+        return node:type() == 'function_item'
+    end)
+    if not fn_node then return end
+
+    local start_row, start_col = fn_node:start()
+    local end_row, end_col = fn_node:end_()
+
+    vim.cmd('normal! V')
+    vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
+    vim.cmd('normal! o')
+    vim.api.nvim_win_set_cursor(0, { end_row + 1, end_col })
+end
+vim.keymap.set("o", "m", select_current_function, opts)

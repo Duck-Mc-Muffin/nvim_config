@@ -11,7 +11,7 @@ let mapleader=' '
 let maplocalleader=' '
 set nu rnu
 set cursorline
-set scrolloff=8
+set scrolloff=12
 set showcmd
 set showmode
 set termguicolors
@@ -37,8 +37,8 @@ set nohlsearch
 set showmatch
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap <leader>r :s/<C-r><C-w>/<C-r><C-w>/g<left><left>
-nnoremap <leader>g :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>rl :s/<C-r><C-w>/<C-r><C-w>/g<left><left>
+nnoremap <leader>rf :%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Tabs
 set tabstop=4
@@ -86,9 +86,6 @@ vnoremap <leader>d "_d
 " Leerzeile unterhalb einfügen
 nnoremap <leader><leader> o<esc><up>
 
-" Zeilen mit { ... } einrücken
-vnoremap <leader>{ >O{<Esc>'>o}<Esc>
-
 " Quickfix list
 nnoremap <F8> :cn<cr>zz
 nnoremap <F7> :cp<cr>zz
@@ -100,3 +97,7 @@ augroup END
 
 " Ez { ... }
 nnoremap <leader>[ o{<CR>}<Up><Right><CR>
+
+" Zeilen mit { ... } einrücken
+vnoremap <leader>{ >O{<Esc>'>o}<Esc>
+
