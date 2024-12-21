@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
     end
 })
 
------------------------------------- Treesitter powered mappings
+-------------------------------- Treesitter powered mappings --------------------------------
 local ts = vim.treesitter
 local opts = { buffer = true, remap = false }
 
@@ -42,7 +42,7 @@ end
 vim.keymap.set("n", "<leader>(", paste_current_parameter_names, opts)
 
 -- Function text object
-local function select_current_function()
+local function select_current_method()
     -- Get parent node
     local fn_node = FindParentFromCursor(function(node)
         return node:type() == 'function_item'
@@ -57,4 +57,4 @@ local function select_current_function()
     vim.cmd('normal! o')
     vim.api.nvim_win_set_cursor(0, { end_row + 1, end_col })
 end
-vim.keymap.set("o", "m", select_current_function, opts)
+vim.keymap.set("o", "m", select_current_method, opts)
