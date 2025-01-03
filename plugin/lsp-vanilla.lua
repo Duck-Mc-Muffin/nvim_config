@@ -6,18 +6,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = {buffer = event.buf, remap = false}
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        -- Custom Go-Definition: either jump to definition or jump from definition to the first item
+        -- Custom Go-Definition: either jump to definition or jump from definition to the first reference
         vim.keymap.set("n", "gd", function ()
             local current_file = event.file
             local current_line = vim.api.nvim_win_get_cursor(0)[1]
-            vim.lsp.buf.references(nil, { on_list = function(options)
-                local item = options.items[1]
-                ---@diagnostic disable-next-line: param-type-mismatch
-                vim.fn.setqflist({}, ' ', options)
+            vim.lsp.buf.definition({ on_list = function(def_options)
+                local item = def_options.items[1]
                 if current_file ~= item.filename or current_line ~= item.lnum then
-                    vim.cmd.cfirst()
+                    vim.lsp.buf.definition()
                 else
-                    vim.cmd.cnext()
+                    vim.lsp.buf.references(nil, { on_list = function(ref_options)
+                        ---@diagnostic disable-next-line: param-type-mismatch
+                        vim.fn.setqflist({}, ' ', ref_options)
+                        vim.cmd.cfirst()
+                    end })
                 end
             end })
         end, opts)
