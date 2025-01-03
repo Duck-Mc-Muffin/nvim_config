@@ -46,10 +46,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Highlight word under the cursor
         if client ~= nil and client.supports_method('textDocument/documentHighlight') then
             vim.opt_local.updatetime = 300
-            vim.api.nvim_create_autocmd('CursorHold', {
+            vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
                 desc = 'Highlights the current variable under the cursor.',
                 group = vim.api.nvim_create_augroup('highlight_cursor_word', {}),
-                buffer = 0,
                 callback = function (_)
                     vim.lsp.buf.clear_references()
                     vim.lsp.buf.document_highlight()
@@ -58,7 +57,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.api.nvim_create_autocmd('CursorMoved', {
                 desc = 'Highlights the current variable under the cursor.',
                 group = vim.api.nvim_create_augroup('unhighlight_cursor_word', {}),
-                buffer = 0,
                 callback = function (_)
                     vim.lsp.buf.clear_references()
                 end,
