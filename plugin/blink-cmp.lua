@@ -1,5 +1,6 @@
-local blink = require('blink.cmp')
+-- Docs: https://cmp.saghen.dev/
 
+local blink = require('blink.cmp')
 blink.setup({
     keymap = {
         preset = 'default',
@@ -14,9 +15,11 @@ blink.setup({
     sources = {
         default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer', 'dadbod' },
         providers = {
-            -- TODO: Test Dadbod completion
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
         },
+    },
+    completion = {
+        documentation = { auto_show = true, auto_show_delay_ms = 50 },
     },
     signature = { enabled = true },
 
@@ -32,3 +35,6 @@ blink.setup({
         jump = function(direction) require('luasnip').jump(direction) end,
     },
 })
+
+-- Fix command mode completion
+vim.keymap.set('c', '<Tab>', '<C-z>', { silent = false })

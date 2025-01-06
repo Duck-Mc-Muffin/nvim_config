@@ -1,3 +1,6 @@
+------ Action Ideas ------
+-- Mapping: Toggle Option<_>, Result<_> or remove monad from a field
+
 -- TODO: read from .toml
 vim.opt_local.textwidth = 140
 

@@ -32,9 +32,9 @@ vim.keymap.set({'i', 's'}, '<C-l>', function()
     end
 end, { silent = true })
 
-vim.keymap.set({'i', 's'}, '<C-l>', function()
-    if ls.expand_or_jumpable() then
-        ls.expand_or_jump()
+vim.keymap.set({'i', 's'}, '<C-h>', function()
+    if ls.jumpable(-1) then
+        ls.jump(-1)
     end
 end, { silent = true })
 
