@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Keymaps
         vim.keymap.set("n", "g=", vim.lsp.buf.format, opts)
         vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol, opts)
+        vim.keymap.set("n", "grd", vim.lsp.buf.declaration, opts)
 
         -- Telescope Keymaps
         vim.keymap.set("n", "<leader>ws", function()
