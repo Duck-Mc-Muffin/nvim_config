@@ -7,6 +7,7 @@ end
 ---@param callback function
 ---@return TSNode?
 function FindParentFromCursor(callback)
+    -- FIXME: Is a bit flaky after yanking and pasting something
     local ts_utils = require('nvim-treesitter.ts_utils')
     local node = ts_utils.get_node_at_cursor()
     if not node then

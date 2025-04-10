@@ -67,6 +67,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 ----------------------------------------------- Languages -----------------------------------------------
+-- Laravel
+-- lspconfig.html.setup({ filetypes = {'html', 'blade', 'templ'} })
+-- lspconfig.intelephense.setup({ filetypes = {'php', 'blade'} })
+lspconfig.html.setup({ filetypes = {'html', 'templ'} })
+lspconfig.intelephense.setup({ filetypes = {'php'} })
 
 -- -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
 -- lspconfig.glsl_analyzer.setup({})

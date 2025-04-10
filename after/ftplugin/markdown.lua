@@ -1,6 +1,10 @@
 -- Conceal links, etc. in Markdown files
 vim.opt_local.conceallevel = 2
 
+-- Activate spell checking
+vim.opt_local.spell = true
+vim.opt_local.spelllang = 'de_20,en_us'
+
 -- Toggle conceallevel when switching to INSERT mode
 vim.api.nvim_create_autocmd({'InsertLeave'}, {
     desc = 'Enable conceallevel after leaving INSERT.',

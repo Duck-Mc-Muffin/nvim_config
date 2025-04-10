@@ -2,7 +2,7 @@
 
 return {
 s(
-    {trig = "link"},
+    {trig = "link", name = 'My MD-Link', desc = 'Selected text to link in "+ register'},
     {
         t('['),
         d(1, get_s_selection),

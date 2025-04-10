@@ -92,7 +92,7 @@ nnoremap <F7> :cp<cr>zz
 augroup qf_mappings
     autocmd!
     " Mit f die Stelle zeigen ohne in das Fenster zu wechseln
-    autocmd FileType qf nnoremap <buffer> f <CR><Esc><C-w>w
+    autocmd FileType qf nnoremap <buffer> f <CR><Esc>zz<C-w>w
 augroup END
 
 " Ez { ... }
