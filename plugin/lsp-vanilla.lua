@@ -11,15 +11,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
             local current_file = event.file
             local current_line = vim.api.nvim_win_get_cursor(0)[1]
             vim.lsp.buf.definition({ on_list = function(def_options)
+                local function on_list_custom(ref_options)
+                    ---@diagnostic disable-next-line: param-type-mismatch
+                    vim.fn.setqflist({}, ' ', ref_options)
+                    vim.cmd.cfirst()
+                end
                 local item = def_options.items[1]
                 if current_file ~= item.filename or current_line ~= item.lnum then
-                    vim.lsp.buf.definition()
+                    vim.lsp.buf.definition({ on_list = on_list_custom })
                 else
-                    vim.lsp.buf.references(nil, { on_list = function(ref_options)
-                        ---@diagnostic disable-next-line: param-type-mismatch
-                        vim.fn.setqflist({}, ' ', ref_options)
-                        vim.cmd.cfirst()
-                    end })
+                    vim.lsp.buf.references(nil, { on_list = on_list_custom })
                 end
             end })
         end, opts)
@@ -45,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, opts)
 
         -- Highlight word under the cursor
-        if client ~= nil and client.supports_method('textDocument/documentHighlight') then
+        if client ~= nil and client:supports_method('textDocument/documentHighlight') then
             vim.opt_local.updatetime = 300
             vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
                 desc = 'Highlights the current variable under the cursor.',
@@ -67,13 +68,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 ----------------------------------------------- Languages -----------------------------------------------
--- Laravel
--- lspconfig.html.setup({ filetypes = {'html', 'blade', 'templ'} })
--- lspconfig.intelephense.setup({ filetypes = {'php', 'blade'} })
-lspconfig.html.setup({ filetypes = {'html', 'templ'} })
-lspconfig.intelephense.setup({ filetypes = {'php'} })
+-- PHP (Laravel)
+lspconfig.html.setup({ filetypes = {'html', 'templ'--[[, 'blade'--]]} })
+lspconfig.intelephense.setup({
+    filetypes = {'php'--[[, 'blade'--]]},
+    root_dir = function () return vim.fn.getcwd() end
+})
 
--- -- GLSL INSTALLIEREN: https://github.com/nolanderc/glsl_analyzer/releases
+-- -- INSTALL GLSL: https://github.com/nolanderc/glsl_analyzer/releases
 -- lspconfig.glsl_analyzer.setup({})
 
 -- This is not needed for godot if --> see 'after/ftplugin/gdscript.lua'
