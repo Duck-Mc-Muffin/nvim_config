@@ -16,6 +16,12 @@ set showcmd
 set showmode
 set termguicolors
 
+" Für transparente Terminals (TODO: nochmal testen)
+"highlight Normal guibg=none
+"highlight NonText guibg=none
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none
+
 " In einem anderen Projekt diese Datei im vertikalen Split öffnen
 nnoremap <leader>ev :vsplit ~/.config/nvim/.vimrc<cr>
 
