@@ -1,8 +1,12 @@
 " Für Hilfe bei den Bezeichnungen für Tasten -> :help key-notation
 
-" TODO: Windows Stuff
-"set fileformats=dos
-"match Ignore /\r$/
+" Windows
+if has("win32") || has("win64")
+    set nofsync
+    set fileformats=dos
+endif
+
+"match Ignore /\r$
 "autocmd BufNewFile,BufRead *.cshtml set filetype=html.cshtml.razor
 "autocmd BufNewFile,BufRead *.razor set filetype=html.cshtml.razor
 

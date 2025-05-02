@@ -1,5 +1,15 @@
 vim.cmd.source(vim.fs.joinpath(vim.fn.stdpath('config'), '.vimrc'))
 
+-- Set global OS detection variable
+if not vim.g.os then
+    local is_windows = vim.fn.has("win64") or vim.fn.has("win32") or vim.fn.has("win16")
+    if is_windows then
+        vim.g.os = "Windows"
+    else
+        vim.g.os = string.gsub(vim.fn.system('uname'), '\\n', '')
+    end
+end
+
 function GetPersonalDir()
     return vim.fs.find('.steven/nvim', {type = 'directory', upward = true})[1]
 end

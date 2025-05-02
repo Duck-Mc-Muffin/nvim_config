@@ -1,5 +1,8 @@
 -- Extensions
-require('telescope').load_extension('fzf')
+if vim.g.os ~= "Windows" then
+    -- won't be loaded for windows
+    require('telescope').load_extension('fzf')
+end
 
 -- Mappings for builtin Telescope features
 local builtin = require('telescope.builtin')
