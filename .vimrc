@@ -89,7 +89,7 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 
 " Void Register
-nnoremap <leader>s "_diwP
+nnoremap <leader>s viwP
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 

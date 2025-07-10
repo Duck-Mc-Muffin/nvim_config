@@ -13,12 +13,12 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {desc = "Telescope find hel
 vim.keymap.set('n', '<leader>fm', builtin.marks, {desc = "Telescope find marks"})
 -- vim.keymap.set('n', '<C-p>', builtin.git_files, {desc = "Telescope find in git files"})
 
-vim.keymap.set('n', '<leader>fu', function ()
+vim.keymap.set('n', '<leader>fc', function ()
     builtin.git_status({
         initial_mode = "normal",
-        layout_config = { preview_width = 0.7 }
+        layout_config = { horizontal = { preview_width = 0.7, } },
     })
-end, {desc = "Telescope find git hunks"})
+end, {desc = "Telescope find git hunks ('find changes')"})
 
 vim.keymap.set('n', '<leader>fd', function()
     builtin.diagnostics({

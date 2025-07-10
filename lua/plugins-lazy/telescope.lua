@@ -19,6 +19,16 @@ return {
                 '--column',
                 '--smart-case',
             },
+            layout_strategy = 'flex',
+            layout_config = {
+                flex = {
+                    flip_columns = 140,
+                },
+                horizontal = {
+                    preview_width = 0.6,
+                    preview_cutoff = 0,
+                },
+            }
         },
         extensions = { fzf = {} }
     },
