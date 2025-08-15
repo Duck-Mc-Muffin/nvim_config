@@ -21,7 +21,7 @@ function FindParentFromCursor(callback)
     local ts_utils = require('nvim-treesitter.ts_utils')
     local node = ts_utils.get_node_at_cursor()
     if not node then
-        print('no node at cursor.')
+        print('No node at cursor.')
         return nil
     end
     while node do
@@ -31,7 +31,7 @@ function FindParentFromCursor(callback)
         node = node:parent()
     end
     if not node then
-        print('No function at cursor.')
+        print('No captured parent at cursor.')
         return nil
     end
     return node

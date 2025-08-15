@@ -59,6 +59,9 @@ M.generate({'on',      'off'},      true)
 M.generate({'enable',  'disable'},  true)
 M.generate({'enabled', 'disabled'}, true)
 
+-- Accessors
+M.generate({'private', 'public'})
+
 -- Canonical hours
 M.generate(
     {

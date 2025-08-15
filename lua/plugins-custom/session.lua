@@ -30,10 +30,11 @@ M.load = function()
     vim.cmd('source ' .. M.getSessionFile())
 end
 
-vim.api.nvim_create_autocmd('VimEnter', {
+vim.api.nvim_create_autocmd('User', {
     group = vim.api.nvim_create_augroup('load_custom_session', {}),
     desc = 'Load a automatically created session when nvim is starting',
-    pattern = '*',
+    once = true,
+    pattern = 'VeryLazy',
     callback = function (_)
         -- Remember the file argument, nvim was called with
         local file_arg_1 = vim.fn.argv(0)

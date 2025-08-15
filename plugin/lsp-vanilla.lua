@@ -33,17 +33,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Telescope Keymaps
         vim.keymap.set("n", "<leader>ws", function()
             require('telescope.builtin').lsp_document_symbols({
-                initial_mode = "normal",
+                initial_mode     = "normal",
                 sorting_strategy = "ascending",
-                layout_config = { height = 0.4, preview_width = 0.7 }
+                layout_config    = { vertical = { height = 0.4, width = 0.7 } },
+                symbols          = { "method" },
             })
-        end, opts)
+        end, {desc = "Telescope list methods (document symbols)"})
         vim.keymap.set("n", "<leader>wS", function()
             require('telescope.builtin').lsp_workspace_symbols()
-        end, opts)
+        end, {desc = "Telescope list workspace symbols"})
         vim.keymap.set("n", "<leader>rr", function()
             require('telescope.builtin').lsp_references({ initial_mode = "normal", layout_strategy = 'vertical' })
-        end, opts)
+        end, {desc = "Telescope find references"})
 
         -- Highlight word under the cursor
         if client ~= nil and client:supports_method('textDocument/documentHighlight') then

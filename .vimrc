@@ -79,7 +79,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Yee
 nnoremap J mzJ`z
-nnoremap L :s/ /\r<cr>
+nnoremap <leader>z 1z=
+nnoremap <leader>t :e TODO.md<cr>
 
 " Clip Board
 nnoremap <leader>y "+y
