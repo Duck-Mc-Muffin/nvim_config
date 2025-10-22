@@ -83,3 +83,11 @@ vim.keymap.set('n', '<leader>ni', function()
     open_file_in_tab(ft, search_path)
     vim.cmd('tcd ' .. conf_path)
 end, {desc = 'Open associated snippit script for this file type'})
+
+-- Open current file with OS standard app
+if vim.g.os == "Windows" then
+    vim.keymap.set('n', '<leader>o', function()
+        os.execute("start " .. vim.fn.expand("%"))
+    end, {desc = 'Open current file with associated OS standard app'})
+end
+
