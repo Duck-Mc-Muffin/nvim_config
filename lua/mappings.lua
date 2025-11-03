@@ -1,41 +1,3 @@
--- local function dumpvar(data)
---     -- cache of tables already printed, to avoid infinite recursive loops
---     local tablecache = {}
---     local buffer = ""
---     local padder = "    "
---     local function _dumpvar(d, depth)
---         local t = type(d)
---         local str = tostring(d)
---         if (t == "table") then
---             if (tablecache[str]) then
---                 -- table already dumped before, so we dont
---                 -- dump it again, just mention it
---                 buffer = buffer.."<"..str..">\n"
---                 -- buffer.
---                 -- buffer.. 
---             else
---                 tablecache[str] = (tablecache[str] or 0) + 1
---                 buffer = buffer.."("..str..") {\n"
---                 for k, v in pairs(d) do
---                     buffer = buffer..string.rep(padder, depth+1).."["..k.."] => "
---                     _dumpvar(v, depth+1)
---                 end
---                 buffer = buffer..string.rep(padder, depth).."}\n"
---             end
---         elseif (t == "number") then
---             buffer = buffer.."("..t..") "..str.."\n"
---         else
---             buffer = buffer.."("..t..") \""..str.."\"\n"
---         end
---     end
---     _dumpvar(data, 0)
---     return buffer
--- end
-
--- local function print_r(data)
---     print(dumpvar(data))
--- end
-
 -- Opens <search_path>/<name>/general.lua or <search_path>/<name>.(lua|vim) or creates <search_path>/<name>.lua
 local function open_file_in_tab(name, search_path)
     -- Search for general.lua in a FileType dir
@@ -85,9 +47,13 @@ vim.keymap.set('n', '<leader>ni', function()
 end, {desc = 'Open associated snippit script for this file type'})
 
 -- Open current file with OS standard app
-if vim.g.os == "Windows" then
+if isWindows() then
     vim.keymap.set('n', '<leader>o', function()
         os.execute("start " .. vim.fn.expand("%"))
+    end, {desc = 'Open current file with associated OS standard app'})
+elseif isLinux() then
+    vim.keymap.set('n', '<leader>o', function()
+        os.execute("xdg-open " .. vim.fn.expand("%"))
     end, {desc = 'Open current file with associated OS standard app'})
 end
 

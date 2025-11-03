@@ -1,8 +1,6 @@
 local lsp_capabilities = require('blink.cmp').get_lsp_capabilities()
 local default_setup = function(server)
-    require('lspconfig')[server].setup({
-        capabilities = lsp_capabilities,
-    })
+    vim.lsp.config(server, { capabilities = lsp_capabilities, })
 end
 
 require('mason').setup({})

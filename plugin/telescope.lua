@@ -1,6 +1,6 @@
 -- Extensions
-if vim.g.os ~= "Windows" then
-    -- won't be loaded for windows
+if isLinux() then
+    -- will only be loaded for Linux
     require('telescope').load_extension('fzf')
 end
 

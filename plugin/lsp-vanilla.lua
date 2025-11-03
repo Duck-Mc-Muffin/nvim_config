@@ -1,5 +1,3 @@
-local lspconfig = require('lspconfig')
-
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function (event)
@@ -70,14 +68,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 ----------------------------------------------- Languages -----------------------------------------------
 -- PHP (Laravel)
-lspconfig.html.setup({ filetypes = {'html', 'templ'--[[, 'blade'--]]} })
-lspconfig.intelephense.setup({
+vim.lsp.config('html', { filetypes = {'html', 'templ'--[[, 'blade'--]]} })
+vim.lsp.config('intelephense', {
     filetypes = {'php'--[[, 'blade'--]]},
     root_dir = function () return vim.fn.getcwd() end
 })
 
 -- -- INSTALL GLSL: https://github.com/nolanderc/glsl_analyzer/releases
--- lspconfig.glsl_analyzer.setup({})
+-- vim.lsp.config.glsl_analyzer.setup({})
 
 -- This is not needed for godot if --> see 'after/ftplugin/gdscript.lua'
-lspconfig.gdscript.setup({})
+vim.lsp.config('gdscript', {})
