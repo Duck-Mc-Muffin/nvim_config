@@ -4,6 +4,8 @@
 if has("win32") || has("win64")
     set nofsync
     set fileformats=dos
+    set shell=powershell.exe
+    set shellcmdflag=-c
 endif
 
 "match Ignore /\r$
