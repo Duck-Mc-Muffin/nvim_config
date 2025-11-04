@@ -39,10 +39,10 @@ vim.cmd.source(vim.fs.joinpath(vim.fn.stdpath('config'), '.vimrc'))
 
 -- OS detection helpers
 function isWindows()
-    return vim.uv.os_uname().sysname == "Windows"
+    return vim.uv.os_uname().sysname:find("Windows", 1, true)
 end
 function isLinux()
-    return vim.uv.os_uname().sysname == "Linux"
+    return vim.uv.os_uname().sysname:find("Linux", 1, true)
 end
 
 function GetPersonalDir()
