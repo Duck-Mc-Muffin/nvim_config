@@ -67,10 +67,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 ----------------------------------------------- Languages -----------------------------------------------
--- PHP (Laravel)
+-- PHP (Laravel) --
 vim.lsp.config('html', { filetypes = {'html', 'templ'--[[, 'blade'--]]} })
 vim.lsp.enable('html')
-
 vim.lsp.config('intelephense', {
     filetypes = {'php'--[[, 'blade'--]]},
     root_dir = function(_, on_dir)
@@ -79,10 +78,19 @@ vim.lsp.config('intelephense', {
 })
 vim.lsp.enable('intelephense')
 
--- -- INSTALL GLSL: https://github.com/nolanderc/glsl_analyzer/releases
+-- GLSL --
+-- INSTALL GLSL: https://github.com/nolanderc/glsl_analyzer/releases
 -- vim.lsp.config.glsl_analyzer.setup({})
 
+-- Godot --
 -- This is not needed for godot if --> see 'after/ftplugin/gdscript.lua'
 vim.lsp.config('gdscript', {})
 vim.lsp.enable('gdscript')
 
+-- Java --
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'java',
+    callback = function (_)
+        require('plugins-custom.jdtls_bootstrap').setup()
+    end
+})

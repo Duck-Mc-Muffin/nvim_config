@@ -6,6 +6,7 @@ end
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {'lua_ls', 'tinymist' },
+    automatic_enable = { exclude = {'jdtls'} },
     handlers = {
         default_setup,
     },
