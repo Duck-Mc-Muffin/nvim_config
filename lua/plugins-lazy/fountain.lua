@@ -1,5 +1,5 @@
 return {
-  "00msjr/nvim-fountain",
+  "0mykull/nvim-fountain",
   ft = "fountain",  -- Lazy-load only for fountain files
   config = function()
     require("nvim-fountain").setup({

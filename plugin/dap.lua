@@ -14,7 +14,7 @@ vim.keymap.set('n', '<F6>', dap.repl.open)
 -- UI
 local dapv = require('nvim-dap-virtual-text')
 local ui = require('dapui')
-dapv.setup()
+dapv.setup({})
 ui.setup()
 
 -- vim.keymap.set({'v', 'n'}, '<leader>?', function()
